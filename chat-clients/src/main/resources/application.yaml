@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: chat-clients
+  profiles:
+    active: dev
+    google:
+      genai:
+        api-key:
+        chat:
+          model: gemini-2.5-flash
+    openai:
+      api-key:
+      chat:
+        model: gpt-4o
+
