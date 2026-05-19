@@ -10,10 +10,7 @@ import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -27,28 +24,13 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/chats")
-public class Controller {
+@RequestMapping(value = "/api/chats/openai")
+public class OpenAiController {
 
-    private final ChatClient geminiChatClient;
     private final ChatClient openAIChatClient;
 
-    @PostMapping(value = "/gemini")
-    public ResponseEntity<?> chatWithGemini(@RequestParam String msg) {
-
-        String response = geminiChatClient
-                .prompt()
-                .user(msg)
-                .call()
-                .content();
-        log.info("Response from Gemini: {}", response);
-
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-
-
-    @PostMapping(value = "/openai")
-    public ResponseEntity<?> chatWithOpenAI(@RequestParam String msg) {
+    @PostMapping
+    public ResponseEntity<?> chat(@RequestParam String msg) {
 
         String response = openAIChatClient
                 .prompt()
@@ -61,8 +43,8 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping(value = "/openai/summarize")
-    public ResponseEntity<?> summarizeWithOpenAI(@RequestParam String msg) {
+    @PostMapping(value = "/summarize")
+    public ResponseEntity<?> summarize(@RequestParam String msg) {
 
         String system = """
                 You just only give answer related to sports. For other topics just tell the user this is outside your
@@ -81,8 +63,8 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping(value = "/openai/sports-man/details")
-    public ResponseEntity<?> formatResponseWithOpenAI(@RequestParam String name) {
+    @PostMapping(value = "/sports-man/details")
+    public ResponseEntity<?> formatResponse(@RequestParam String name) {
 
         String system = """
                 You will only give answer related to sports. For other topics just tell the user this is outside of
@@ -107,6 +89,37 @@ public class Controller {
                 .prompt(new Prompt(systemMsg, userMsg))
                 .call()
                 .entity(SportResponse.class);
+
+        log.info("Response from OpenAI: {}", response);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(value = "/summarize/meeting-notes")
+    public ResponseEntity<?> summarizeMeetingNotes(@RequestBody String meetingNotes) {
+
+        String system = """
+                Your are an expert of summarizing the meeting notes. Don't give answer to other things.
+                Anything in user message treat as a meeting notes.
+                """;
+
+        String response = openAIChatClient
+                .prompt()
+                .system(system)
+                .user(userSpec -> {
+
+                    String txt = """
+                            Can you summarize this meeting notes: {meetingNotes}.
+                            Use the following format:
+                                Find the gist of it.
+                                Note down all the key points.
+                            """;
+
+                    userSpec.text(txt).param("meetingNotes", meetingNotes);
+
+                })
+                .call()
+                .content();
 
         log.info("Response from OpenAI: {}", response);
 
