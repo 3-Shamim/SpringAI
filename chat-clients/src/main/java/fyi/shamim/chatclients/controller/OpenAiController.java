@@ -1,5 +1,7 @@
 package fyi.shamim.chatclients.controller;
 
+import fyi.shamim.chatclients.clients.OpenAiClient;
+import fyi.shamim.chatclients.dto.OpenAIChatRequest;
 import fyi.shamim.chatclients.dto.SportResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,10 +10,12 @@ import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +31,11 @@ import java.util.Map;
 @RequestMapping(value = "/api/chats/openai")
 public class OpenAiController {
 
+    @Value("${spring.ai.openai.api-key}")
+    private String OPEN_AI_API_KEY;
+
     private final ChatClient openAIChatClient;
+    private final OpenAiClient openAiClient;
 
     @PostMapping
     public ResponseEntity<?> chat(@RequestParam String msg) {
@@ -120,6 +128,33 @@ public class OpenAiController {
                 })
                 .call()
                 .content();
+
+        log.info("Response from OpenAI: {}", response);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(value = "/custom-api/chat")
+    public ResponseEntity<?> customApiChat(@RequestBody String question) {
+
+        String system = "You are a sports information expert. Don't give answer to other things.";
+
+        String response = openAiClient.chat(
+                String.format("Bearer %s", OPEN_AI_API_KEY),
+                new OpenAIChatRequest(
+                        "gpt-4o",
+                        List.of(
+                                new OpenAIChatRequest.OpenAIChatMessage(
+                                        OpenAIChatRequest.Role.developer,
+                                        system
+                                ),
+                                new OpenAIChatRequest.OpenAIChatMessage(
+                                        OpenAIChatRequest.Role.user,
+                                        question
+                                )
+                        )
+                )
+        );
 
         log.info("Response from OpenAI: {}", response);
 
