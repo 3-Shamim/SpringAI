@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: vertex-ai
+  ai:
+    vertex:
+      ai:
+        gemini:
+          project-id: project-df3d6550-0216-4399-9c6
+          location: us-central1
+          chat:
+            options:
+              model: gemini-2.5-flash
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

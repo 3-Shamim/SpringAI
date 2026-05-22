@@ -3,6 +3,7 @@ spring:
     name: chat-clients
   profiles:
     active: dev
+  ai:
     google:
       genai:
         api-key:

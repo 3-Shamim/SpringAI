@@ -1,13 +1,13 @@
-package fyi.shamim.chatclients;
+package fyi.shamim.vertexai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class VertexAiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(VertexAiApplication.class, args);
     }
 
 }
