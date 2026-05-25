@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: huggingface
+  ai:
+    openai:
+      api-key: ${HUGGINGFACE_API_KEY}
+      base-url: https://router.huggingface.co
+      chat:
+        options:
+          model: Qwen/Qwen2.5-Coder-7B-Instruct:nscale # nscale is a provider, it's important for shared model
+    huggingface:
+      chat:
+        api-key: ${HUGGINGFACE_API_KEY}
+        url: https://qyztg3i82qbwsh2a.us-east-1.aws.endpoints.huggingface.cloud
+        options:
+          model: Qwen/Qwen2.5-Coder-7B-Instruct
+          max-tokens: 1024
+          temperature: 0.7
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
