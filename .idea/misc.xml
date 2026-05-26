@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/chat-clients/pom.xml" />
         <option value="$PROJECT_DIR$/vertex-ai/pom.xml" />
         <option value="$PROJECT_DIR$/huggingface/pom.xml" />
+        <option value="$PROJECT_DIR$/local-ollama-integration/pom.xml" />
       </list>
     </option>
   </component>

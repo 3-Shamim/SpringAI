@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/chat-clients/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/huggingface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/local-ollama-integration/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vertex-ai/src/main/java" charset="UTF-8" />
   </component>
 </project>

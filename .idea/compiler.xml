@@ -3,14 +3,14 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for huggingface" enabled="true">
+      <profile name="Annotation profile for local-ollama-integration" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="huggingface" />
+        <module name="local-ollama-integration" />
       </profile>
       <profile name="Annotation profile for vertex-ai" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -22,6 +22,7 @@
         </processorPath>
         <module name="vertex-ai" />
         <module name="chat-clients" />
+        <module name="huggingface" />
       </profile>
     </annotationProcessing>
   </component>
@@ -29,6 +30,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="chat-clients" options="-parameters" />
       <module name="huggingface" options="-parameters" />
+      <module name="local-ollama-integration" options="-parameters" />
       <module name="vertex-ai" options="-parameters" />
     </option>
   </component>
