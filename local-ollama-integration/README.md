@@ -9,7 +9,9 @@
     * For this client we need to add suffix `/v1` with ollama url
   * Using Ollama client
   * Ollama expose endpoints for both clients
-  * This application has complete example
+    * Ollama compatible
+    * OpenAI compatible
+  * This application itself is a complete example
   * Follow the `application.yaml`
 * We can create a custom model using `modelfile`
   * Example: `mistral-email-draft-modelfile`
