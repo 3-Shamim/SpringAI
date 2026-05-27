@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: springai-with-docker-model-runner
+  ai:
+    openai:
+      api-key: dummy-token
+      base-url: http://localhost:12434/engines/llama.cpp/v1
+      chat:
+        model: ai/gemma4

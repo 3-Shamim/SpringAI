@@ -4,10 +4,19 @@
   * Run a model in your local with Ollama
   * https://ollama.com/
   * https://docs.ollama.com/
+  * Ollam expose endpoints at http://localhost:11434
+  * To see all Ollama commands enter `ollama help` in the terminal
+* How to run a Model with Ollama
+  * `ollama pull qwen3.5`
+  * `ollama list`
+  * `ollama run qwen3.5`
 * Way of integration
   * Using OpenAI client
-    * For this client we need to add suffix `/v1` with ollama url
+    * For this client we need to add suffix `/v1` with Ollama URL
+    * URL: http://localhost:11434/v1
   * Using Ollama client
+    * We don't need any extra suffix
+    * URL: http://localhost:11434
   * Ollama expose endpoints for both clients
     * Ollama compatible
     * OpenAI compatible
