@@ -4,7 +4,7 @@
   * If you want you can explore with others
 * Shared API
   * MODEL=any model from hugging face 
-  * https://router.huggingface.co/hf-inference/models/$MODEL
+  * Endpoints: https://router.huggingface.co/hf-inference/models/$MODEL
   * You will find an example request in `huggingface-shared-api.sh`
   * We can config this using SpringAI OpenAI client
   * ```yaml
