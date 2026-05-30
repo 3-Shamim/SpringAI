@@ -8,15 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for stream-chat" enabled="true">
+      <profile name="Annotation profile for structured-response" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="stream-chat" />
-        <module name="chat-clients" />
+        <module name="structured-response" />
       </profile>
       <profile name="Annotation profile for vertex-ai" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,7 +26,9 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
         <module name="vertex-ai" />
+        <module name="chat-clients" />
         <module name="huggingface" />
+        <module name="stream-chat" />
         <module name="local-ollama-integration" />
         <module name="springai-with-docker-model-runner" />
       </profile>
@@ -40,6 +41,7 @@
       <module name="local-ollama-integration" options="-parameters" />
       <module name="springai-with-docker-model-runner" options="-parameters" />
       <module name="stream-chat" options="-parameters" />
+      <module name="structured-response" options="-parameters" />
       <module name="vertex-ai" options="-parameters" />
     </option>
   </component>

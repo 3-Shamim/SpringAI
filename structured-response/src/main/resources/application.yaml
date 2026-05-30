@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: structured-response
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        model: gpt-4o
