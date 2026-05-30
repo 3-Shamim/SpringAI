@@ -1,4 +1,5 @@
 ## Integrate OpenWebUI with Ollama and Docker Model Runner
+* OpenWebAI - https://docs.openwebui.com/
 * Docker command to run OpenWebUI
   * ```
     docker run -d -p 3000:8080 \
@@ -30,7 +31,8 @@
     volumes:
       open-webui-data:
     ```
-    
+* You can access it with `http://localhost:3000`
+
 ## Important notes:
 
 * Docker Model Runner defaults to listening on 0.0.0.0, meaning it accepts connections from anywhere (including other Docker containers like Open WebUI). 

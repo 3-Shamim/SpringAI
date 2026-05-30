@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/huggingface/pom.xml" />
         <option value="$PROJECT_DIR$/local-ollama-integration/pom.xml" />
         <option value="$PROJECT_DIR$/springai-with-docker-model-runner/pom.xml" />
+        <option value="$PROJECT_DIR$/stream-chat/pom.xml" />
       </list>
     </option>
   </component>

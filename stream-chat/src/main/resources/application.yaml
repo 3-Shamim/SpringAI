@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: stream-chat
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4o
