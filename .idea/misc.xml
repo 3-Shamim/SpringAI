@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/springai-with-docker-model-runner/pom.xml" />
         <option value="$PROJECT_DIR$/stream-chat/pom.xml" />
         <option value="$PROJECT_DIR$/structured-response/pom.xml" />
+        <option value="$PROJECT_DIR$/chat-options/pom.xml" />
       </list>
     </option>
   </component>

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: chat-options
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4o
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: mistral:7b
