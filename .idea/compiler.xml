@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for chat-options" enabled="true">
+      <profile name="Annotation profile for advisor" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="chat-options" />
+        <module name="advisor" />
       </profile>
       <profile name="Annotation profile for vertex-ai" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,6 +27,7 @@
         </processorPath>
         <module name="vertex-ai" />
         <module name="chat-clients" />
+        <module name="chat-options" />
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="stream-chat" />
@@ -37,6 +38,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="advisor" options="-parameters" />
       <module name="chat-clients" options="-parameters" />
       <module name="chat-options" options="-parameters" />
       <module name="huggingface" options="-parameters" />
