@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/structured-response/pom.xml" />
         <option value="$PROJECT_DIR$/chat-options/pom.xml" />
         <option value="$PROJECT_DIR$/advisor/pom.xml" />
+        <option value="$PROJECT_DIR$/prompt-templating/pom.xml" />
       </list>
     </option>
   </component>
