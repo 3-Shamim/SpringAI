@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for jailbreak-with-tool" enabled="true">
+      <profile name="Annotation profile for chat-memory" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="jailbreak-with-tool" />
+        <module name="chat-memory" />
       </profile>
       <profile name="Annotation profile for vertex-ai" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -29,6 +29,7 @@
         <module name="chat-clients" />
         <module name="advisor" />
         <module name="chat-options" />
+        <module name="jailbreak-with-tool" />
         <module name="prompt-templating" />
         <module name="structured-response" />
         <module name="huggingface" />
@@ -42,6 +43,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="advisor" options="-parameters" />
       <module name="chat-clients" options="-parameters" />
+      <module name="chat-memory" options="-parameters" />
       <module name="chat-options" options="-parameters" />
       <module name="huggingface" options="-parameters" />
       <module name="jailbreak-with-tool" options="-parameters" />

@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/advisor/pom.xml" />
         <option value="$PROJECT_DIR$/prompt-templating/pom.xml" />
         <option value="$PROJECT_DIR$/jailbreak-with-tool/pom.xml" />
+        <option value="$PROJECT_DIR$/chat-memory/pom.xml" />
       </list>
     </option>
   </component>
