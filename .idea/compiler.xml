@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for prompt-templating" enabled="true">
+      <profile name="Annotation profile for jailbreak-with-tool" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="prompt-templating" />
+        <module name="jailbreak-with-tool" />
       </profile>
       <profile name="Annotation profile for vertex-ai" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -29,6 +29,7 @@
         <module name="chat-clients" />
         <module name="advisor" />
         <module name="chat-options" />
+        <module name="prompt-templating" />
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="stream-chat" />
@@ -43,6 +44,7 @@
       <module name="chat-clients" options="-parameters" />
       <module name="chat-options" options="-parameters" />
       <module name="huggingface" options="-parameters" />
+      <module name="jailbreak-with-tool" options="-parameters" />
       <module name="local-ollama-integration" options="-parameters" />
       <module name="prompt-templating" options="-parameters" />
       <module name="springai-with-docker-model-runner" options="-parameters" />

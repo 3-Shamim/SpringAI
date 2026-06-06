@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: jailbreak-with-tool
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        model: gpt-3.5-turbo
