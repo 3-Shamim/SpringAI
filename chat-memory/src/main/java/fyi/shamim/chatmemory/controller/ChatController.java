@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatController {
 
     private final ChatClient chatClient;
-    private final ChatClient chatClientWithInMemoryChatMemory;
+    private final ChatClient chatClientWithChatMemory;
     private final ChatClient chatClientWithCustomInMemoryChatMemory;
 
     @PostMapping("")
@@ -43,7 +43,7 @@ public class ChatController {
     @PostMapping("/in-memory")
     public ResponseEntity<?> chatWithInMemoryChatMemory(@RequestBody String message) {
 
-        ChatResponse chatResponse = chatClientWithInMemoryChatMemory.prompt()
+        ChatResponse chatResponse = chatClientWithChatMemory.prompt()
                 .user(message)
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "default"))
                 .call()

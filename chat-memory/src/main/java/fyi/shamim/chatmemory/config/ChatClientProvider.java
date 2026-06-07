@@ -26,7 +26,7 @@ public class ChatClientProvider {
     }
 
     @Bean
-    public ChatClient chatClientWithInMemoryChatMemory(OpenAiChatModel model, ChatMemory chatMemory) {
+    public ChatClient chatClientWithChatMemory(OpenAiChatModel model, ChatMemory chatMemory) {
 
         return ChatClient.builder(model)
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())

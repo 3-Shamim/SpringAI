@@ -1,0 +1,1 @@
+truncate table spring_ai_chat_memory;

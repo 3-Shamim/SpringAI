@@ -8,3 +8,16 @@ spring:
       api-key:
       chat:
         model: gpt-4o
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: postgres
+#  sql:
+#    init:
+#      mode: always
+#      schema-locations: classpath:/db/data.sql
