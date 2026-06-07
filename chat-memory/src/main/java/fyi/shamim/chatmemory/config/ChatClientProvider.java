@@ -34,10 +34,11 @@ public class ChatClientProvider {
     }
 
     @Bean
-    ChatMemory customInMemoryChatMemory(ChatMemoryRepository chatMemoryRepository) {
+    public ChatMemory customInMemoryChatMemory(ChatMemoryRepository chatMemoryRepository) {
 
         return MessageWindowChatMemory.builder()
                 .chatMemoryRepository(chatMemoryRepository)
+                // This will ensure only 10 messages in memory for per key/conversation_id
                 .maxMessages(10)
                 .build();
     }
