@@ -34,7 +34,7 @@ public class ChatClientProvider {
     }
 
     @Bean
-    public ChatMemory customInMemoryChatMemory(ChatMemoryRepository chatMemoryRepository) {
+    public ChatMemory customChatMemory(ChatMemoryRepository chatMemoryRepository) {
 
         return MessageWindowChatMemory.builder()
                 .chatMemoryRepository(chatMemoryRepository)
@@ -44,10 +44,10 @@ public class ChatClientProvider {
     }
 
     @Bean
-    public ChatClient chatClientWithCustomInMemoryChatMemory(OpenAiChatModel model, ChatMemory customInMemoryChatMemory) {
+    public ChatClient chatClientWithCustomChatMemory(OpenAiChatModel model, ChatMemory customChatMemory) {
 
         return ChatClient.builder(model)
-                .defaultAdvisors(MessageChatMemoryAdvisor.builder(customInMemoryChatMemory).build())
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(customChatMemory).build())
                 .build();
     }
 
