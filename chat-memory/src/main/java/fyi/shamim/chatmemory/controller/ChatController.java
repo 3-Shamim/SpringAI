@@ -40,8 +40,8 @@ public class ChatController {
         return ResponseEntity.status(HttpStatus.OK).body(chatResponse);
     }
 
-    @PostMapping("/in-memory")
-    public ResponseEntity<?> chatWithInMemoryChatMemory(@RequestBody String message) {
+    @PostMapping("/memory")
+    public ResponseEntity<?> chatWithChatMemory(@RequestBody String message) {
 
         ChatResponse chatResponse = chatClientWithChatMemory.prompt()
                 .user(message)
