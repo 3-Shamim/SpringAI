@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final ChatClient chatClientWithCustomInMemoryChatMemory;
-    private final ChatMemory customInMemoryChatMemory;
+    private final ChatClient chatClientWithCustomChatMemory;
+    private final ChatMemory customChatMemory;
     private final OrderStatusTools orderStatusTools;
 
     @PostMapping("/status")
     public ResponseEntity<?> orderStatus(@RequestBody String message, @RequestHeader String userId) {
 
-        customInMemoryChatMemory.get(userId).forEach(m -> log.info("UserID: {}, Message: {}", userId, m));
+        customChatMemory.get(userId).forEach(m -> log.info("UserID: {}, Message: {}", userId, m));
 
         String systemMsg = """
                 You are a very special order tracker assistant. You only help user to track their order status.
@@ -44,7 +44,7 @@ public class OrderController {
 
         String userMsg = "%s. User ID: %s".formatted(message, userId);
 
-        String chatResponse = chatClientWithCustomInMemoryChatMemory.prompt()
+        String chatResponse = chatClientWithCustomChatMemory.prompt()
                 .system(systemMsg)
                 .user(userMsg)
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, userId))

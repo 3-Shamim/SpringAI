@@ -15,16 +15,6 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="chat-memory" />
-      </profile>
-      <profile name="Annotation profile for vertex-ai" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-        </processorPath>
         <module name="vertex-ai" />
         <module name="chat-clients" />
         <module name="advisor" />
@@ -34,6 +24,7 @@
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="stream-chat" />
+        <module name="chat-memory" />
         <module name="local-ollama-integration" />
         <module name="springai-with-docker-model-runner" />
       </profile>

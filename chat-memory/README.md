@@ -19,3 +19,4 @@
             </dependency>
           ```
     * All config you will find in `application.yaml`
+    * Tooling is not working. There is an issue creating on SpringAI [GitHub](https://github.com/spring-projects/spring-ai/issues/6197).
