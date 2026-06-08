@@ -1,0 +1,29 @@
+spring:
+  ai:
+    openai:
+      base-url: http://localhost:12434/engines/llama.cpp
+      api-key: dummy
+      chat:
+        options:
+          model: ai/gemma4
+      embedding:
+        options:
+          dimensions: 1024
+          model: ai/mxbai-embed-large
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: hnsw
+        distance-type: cosine_distance
+        dimensions: 1024
+        max-document-batch-size: 10_000
+  #        remove-existing-vector-store-table: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: postgres
