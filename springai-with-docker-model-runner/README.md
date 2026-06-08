@@ -25,4 +25,4 @@
       * Because it exposes multiple URL
       * This URL points to the Model
     * We have added suffix `/v1` with the Docker Model Runner URL
-      * This is required for SpringAI OpenAI client
+      * This is required for SpringAI 2.0.0-* OpenAI client
