@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: chat-memory-with-springai-v1
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4o
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: postgres
