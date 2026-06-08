@@ -8,11 +8,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for chat-memory-with-springai-v1" enabled="true">
+      <profile name="Annotation profile for chat-memory-pg-vector" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="chat-memory-pg-vector" />
+      </profile>
+      <profile name="Annotation profile for vertex-ai" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
         <module name="chat-clients" />
@@ -21,8 +31,8 @@
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="chat-memory-with-springai-v1" />
-        <module name="chat-memory" />
         <module name="local-ollama-integration" />
+        <module name="chat-memory" />
         <module name="springai-with-docker-model-runner" />
         <module name="vertex-ai" />
         <module name="advisor" />
@@ -36,6 +46,7 @@
       <module name="advisor" options="-parameters" />
       <module name="chat-clients" options="-parameters" />
       <module name="chat-memory" options="-parameters" />
+      <module name="chat-memory-pg-vector" options="-parameters" />
       <module name="chat-memory-with-springai-v1" options="-parameters" />
       <module name="chat-options" options="-parameters" />
       <module name="huggingface" options="-parameters" />

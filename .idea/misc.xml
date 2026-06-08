@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/jailbreak-with-tool/pom.xml" />
         <option value="$PROJECT_DIR$/chat-memory/pom.xml" />
         <option value="$PROJECT_DIR$/chat-memory-with-springai-v1/pom.xml" />
+        <option value="$PROJECT_DIR$/chat-memory-pg-vector/pom.xml" />
       </list>
     </option>
   </component>
