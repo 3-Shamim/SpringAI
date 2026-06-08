@@ -1,10 +1,11 @@
-package fyi.shamim.chatmemory.controller;
+package fyi.shamim.chatmemorywithspringaiv1.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ public class ChatController {
     private final ChatClient chatClient;
     private final ChatClient chatClientWithChatMemory;
     private final ChatClient chatClientWithCustomChatMemory;
+    private final ChatClient chatClientWithCustomInMemoryChatMemory;
 
     @PostMapping("")
     public ResponseEntity<?> chat(@RequestBody String message) {
@@ -56,6 +58,18 @@ public class ChatController {
     public ResponseEntity<?> chatWithCustomChatMemory(@RequestBody String message) {
 
         String chatResponse = chatClientWithCustomChatMemory.prompt()
+                .user(message)
+                .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "default"))
+                .call()
+                .content();
+
+        return ResponseEntity.status(HttpStatus.OK).body(chatResponse);
+    }
+
+    @PostMapping("/custom-in-memory")
+    public ResponseEntity<?> chatWithCustomInMemoryChatMemory(@RequestBody String message) {
+
+        String chatResponse = chatClientWithCustomInMemoryChatMemory.prompt()
                 .user(message)
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "default"))
                 .call()

@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/advisor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-clients/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/chat-memory-with-springai-v1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-memory/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-options/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/huggingface/src/main/java" charset="UTF-8" />
