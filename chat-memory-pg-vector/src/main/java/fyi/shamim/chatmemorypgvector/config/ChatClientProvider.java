@@ -1,7 +1,9 @@
 package fyi.shamim.chatmemorypgvector.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -30,7 +32,7 @@ public class ChatClientProvider {
     }
 
     @Bean
-    public ChatClient chatClientWithMemory(OpenAiChatModel model, VectorStore vectorStore) {
+    public ChatClient chatClientWithMemory(OpenAiChatModel model, VectorStore vectorStore, ChatMemory chatMemory) {
 
         return ChatClient.builder(model)
                 .defaultAdvisors(
@@ -38,7 +40,8 @@ public class ChatClientProvider {
                                 // Add custom system prompt template
                                 .systemPromptTemplate(new PromptTemplate(vectorStoreSystemPrompt))
                                 .defaultTopK(10)
-                                .build()
+                                .build(),
+                        MessageChatMemoryAdvisor.builder(chatMemory).build()
                 )
                 .build();
     }

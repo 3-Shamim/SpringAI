@@ -13,6 +13,11 @@ spring:
         options:
           dimensions: 1024
           model: text-embedding-3-small
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
     vectorstore:
       pgvector:
         initialize-schema: true
