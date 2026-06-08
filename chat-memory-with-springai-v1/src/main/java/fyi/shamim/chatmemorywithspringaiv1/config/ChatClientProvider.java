@@ -2,6 +2,7 @@ package fyi.shamim.chatmemorywithspringaiv1.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.ChatMemoryRepository;
 import org.springframework.ai.chat.memory.InMemoryChatMemoryRepository;
@@ -82,6 +83,15 @@ public class ChatClientProvider {
 
         return ChatClient.builder(model)
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                .build();
+    }
+
+    @Bean
+    public ChatClient chatClientWithPromptChatMemory(OpenAiChatModel model, ChatMemory chatMemory) {
+
+        return ChatClient.builder(model)
+                // PromptChatMemoryAdvisor is deprecated
+                .defaultAdvisors(PromptChatMemoryAdvisor.builder(chatMemory).build())
                 .build();
     }
 

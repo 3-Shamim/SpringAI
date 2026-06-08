@@ -30,6 +30,7 @@ public class ChatController {
     private final ChatClient chatClientWithChatMemory;
     private final ChatClient chatClientWithCustomChatMemory;
     private final ChatClient chatClientWithCustomInMemoryChatMemory;
+    private final ChatClient chatClientWithPromptChatMemory;
 
     @PostMapping("")
     public ResponseEntity<?> chat(@RequestBody String message) {
@@ -70,6 +71,18 @@ public class ChatController {
     public ResponseEntity<?> chatWithCustomInMemoryChatMemory(@RequestBody String message) {
 
         String chatResponse = chatClientWithCustomInMemoryChatMemory.prompt()
+                .user(message)
+                .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "default"))
+                .call()
+                .content();
+
+        return ResponseEntity.status(HttpStatus.OK).body(chatResponse);
+    }
+
+    @PostMapping("/prompt-memory")
+    public ResponseEntity<?> chatWithPromptChatMemory(@RequestBody String message) {
+
+        String chatResponse = chatClientWithPromptChatMemory.prompt()
                 .user(message)
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, "default"))
                 .call()
