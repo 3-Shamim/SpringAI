@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/aa/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/advisor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-clients/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-memory-pg-vector/src/main/java" charset="UTF-8" />
@@ -8,12 +9,15 @@
     <file url="file://$PROJECT_DIR$/chat-memory/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-options/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/huggingface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-text-image-1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-text-image/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jailbreak-with-tool/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/local-ollama-integration/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prompt-templating/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springai-with-docker-model-runner/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stream-chat/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/structured-response/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/text-to-image/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vertex-ai/src/main/java" charset="UTF-8" />
   </component>
 </project>

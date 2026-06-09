@@ -8,16 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for chat-memory-pg-vector" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-        </processorPath>
-        <module name="chat-memory-pg-vector" />
-      </profile>
-      <profile name="Annotation profile for vertex-ai" enabled="true">
+      <profile name="Annotation profile for image-text-image" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -31,15 +22,21 @@
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="chat-memory-with-springai-v1" />
+        <module name="chat-memory-pg-vector" />
         <module name="local-ollama-integration" />
         <module name="chat-memory" />
         <module name="springai-with-docker-model-runner" />
         <module name="vertex-ai" />
         <module name="advisor" />
         <module name="prompt-templating" />
+        <module name="image-text-image" />
         <module name="stream-chat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="image-to-text-to-image" target="25" />
+      <module name="text-to-image" target="25" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -50,12 +47,15 @@
       <module name="chat-memory-with-springai-v1" options="-parameters" />
       <module name="chat-options" options="-parameters" />
       <module name="huggingface" options="-parameters" />
+      <module name="image-text-image" options="-parameters" />
+      <module name="image-to-text-to-image" options="-parameters" />
       <module name="jailbreak-with-tool" options="-parameters" />
       <module name="local-ollama-integration" options="-parameters" />
       <module name="prompt-templating" options="-parameters" />
       <module name="springai-with-docker-model-runner" options="-parameters" />
       <module name="stream-chat" options="-parameters" />
       <module name="structured-response" options="-parameters" />
+      <module name="text-to-image" options="-parameters" />
       <module name="vertex-ai" options="-parameters" />
     </option>
   </component>

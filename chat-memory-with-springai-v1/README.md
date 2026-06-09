@@ -18,6 +18,8 @@
                 <artifactId>postgresql</artifactId>
             </dependency>
           ```
+    * Install PostgresSQL in your local or use a remote one
+      * You use the `docker-compose.yml`
     * All config you will find in `application.yaml`
     * Use `ChatMemoryRepository`
     * Default Implementation `JdbcChatMemoryRepository`

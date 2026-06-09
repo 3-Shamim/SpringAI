@@ -19,7 +19,15 @@
         <option value="$PROJECT_DIR$/chat-memory/pom.xml" />
         <option value="$PROJECT_DIR$/chat-memory-with-springai-v1/pom.xml" />
         <option value="$PROJECT_DIR$/chat-memory-pg-vector/pom.xml" />
+        <option value="$PROJECT_DIR$/image-to-text/pom.xml" />
+        <option value="$PROJECT_DIR$/text-to-image/pom.xml" />
+        <option value="$PROJECT_DIR$/image-text-image/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/text-to-image/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="corretto-25" project-jdk-type="JavaSDK">
