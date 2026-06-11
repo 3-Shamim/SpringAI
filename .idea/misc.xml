@@ -23,6 +23,7 @@
         <option value="$PROJECT_DIR$/text-to-image/pom.xml" />
         <option value="$PROJECT_DIR$/image-text-image/pom.xml" />
         <option value="$PROJECT_DIR$/speech-text-speech/pom.xml" />
+        <option value="$PROJECT_DIR$/rag/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
