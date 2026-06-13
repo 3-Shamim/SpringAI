@@ -14,3 +14,23 @@ spring:
       chat:
         options:
           model: mistral:7b
+
+app:
+  ai:
+    provider: openai
+  rag:
+    force-rebuild: false
+    top-k: 4
+    similarity-threshold: 0.0
+    chunk:
+      size: 800
+      min-chunk-size: 200
+      min-chunk-to-embed: 50
+      max-chunk-size: 8192
+      keep-separator: true
+
+
+logging:
+  level:
+    root: info
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
