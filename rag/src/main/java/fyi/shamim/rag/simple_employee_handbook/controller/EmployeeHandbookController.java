@@ -2,6 +2,8 @@ package fyi.shamim.rag.simple_employee_handbook.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.embedding.EmbeddingModel;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +25,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeHandbookController {
 
     private final ChatClient openAiSimpleRagChatClient;
+    private final EmbeddingModel openAiEmbeddingModel;
 
-    public EmployeeHandbookController(@Qualifier("openAiSimpleRagChatClient") ChatClient openAiSimpleRagChatClient) {
+    public EmployeeHandbookController(@Qualifier("openAiSimpleRagChatClient")
+                                      ChatClient openAiSimpleRagChatClient,
+                                      @Qualifier("openAiEmbeddingModel")
+                                      EmbeddingModel openAiEmbeddingModel) {
+
         this.openAiSimpleRagChatClient = openAiSimpleRagChatClient;
+        this.openAiEmbeddingModel = openAiEmbeddingModel;
     }
 
 
-    @PostMapping
+    @PostMapping("/ask")
     public ResponseEntity<?> handBookChat(@RequestBody String question) {
 
         String system = """
@@ -46,6 +54,21 @@ public class EmployeeHandbookController {
                 .content();
 
         return ResponseEntity.status(HttpStatus.OK).body(content);
+    }
+
+    @PostMapping("/embed")
+    public ResponseEntity<?> showEmbedding(@RequestBody String userMessage) {
+
+        String message = "Go one a vacation.";
+        float[] messageEmbed = openAiEmbeddingModel.embed(message);
+        log.info("Embed of 'Go one a vacation': {}", messageEmbed);
+        float[] userMessageEmbed = openAiEmbeddingModel.embed(userMessage);
+        log.info("Embed of '%s': {}".formatted(userMessage), userMessageEmbed);
+
+        double similarity = SimpleVectorStore.EmbeddingMath.cosineSimilarity(messageEmbed, userMessageEmbed);
+        log.info("Cosine similarity is: {}", similarity);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Check application log for details.");
     }
 
 }

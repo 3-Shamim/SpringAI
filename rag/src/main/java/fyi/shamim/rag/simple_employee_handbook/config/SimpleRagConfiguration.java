@@ -90,6 +90,7 @@ public class SimpleRagConfiguration {
 
         for (Resource resource : resources) {
 
+            // TextReader returns one document for whole text file.
             TextReader reader = new TextReader(resource);
             reader.getCustomMetadata().put("category", resource.getFilename().replace(".md", ""));
             reader.getCustomMetadata().put("access_level", "public");
