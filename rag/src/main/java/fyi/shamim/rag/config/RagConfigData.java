@@ -1,4 +1,4 @@
-package fyi.shamim.rag.simple_employee_handbook.config;
+package fyi.shamim.rag.config;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,22 +18,36 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "app.rag")
 @Getter
 @Setter
-public class SimpleRagConfigData {
+public class RagConfigData {
 
     private boolean forceRebuild;
     private int topK;
     private double similarityThreshold;
     private RagChunkProperties chunk;
+    private PdfProperties pdf;
 
     @Setter
     @Getter
-    static class RagChunkProperties {
+    public static class RagChunkProperties {
 
         private int size;
         private int minChunkSize;
         private int minChunkToEmbed;
         private int maxChunkSize;
         private boolean keepSeparator;
+
+    }
+
+    @Setter
+    @Getter
+    public static class PdfProperties {
+
+        private String mode;
+        private String path;
+        private int pagesPerDocument;
+        private boolean leftAlignment;
+        private int numberOfTopTextLineToDelete;
+        private int numberOfBottomTextLineToDelete;
 
     }
 

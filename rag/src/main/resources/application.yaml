@@ -14,10 +14,21 @@ spring:
       chat:
         options:
           model: mistral:7b
+    vectorstore:
+      pgvector:
+        table-name-for-chat-memory: vector_store
+        table-name-for-rag: rag_advance_vector_store
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+        max-document-batch-size: 10_000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: postgres
 
 app:
-  ai:
-    provider: openai
   rag:
     force-rebuild: false
     top-k: 4
@@ -28,7 +39,13 @@ app:
       min-chunk-to-embed: 50
       max-chunk-size: 8192
       keep-separator: true
-
+    pdf:
+      mode: page
+      path: file:/home/shamim/Code/My-Code/SpringAI/rag/src/main/resources/rag/qa-over-internal-docs/*.pdf
+      pages-per-document: 1
+      left-alignment: true
+      number-of-top-text-line-to-delete: 0
+      number-of-bottom-text-line-to-delete: 0
 
 logging:
   level:

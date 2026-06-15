@@ -1,5 +1,6 @@
 package fyi.shamim.rag.simple_employee_handbook.config;
 
+import fyi.shamim.rag.config.RagConfigData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
@@ -31,28 +32,18 @@ public class SimpleRagConfiguration {
     private static final String FILES_PATH = "classpath:rag/employee-handbooks/files/*.md";
     private static final String VECTOR_STORE_PATH = "data/employee-handbooks/vector-store/vectorstore.json";
 
-    @Bean
-    public TokenTextSplitter tokenTextSplitter(SimpleRagConfigData simpleRagConfigData) {
-        return TokenTextSplitter.builder()
-                .withChunkSize(simpleRagConfigData.getChunk().getSize())
-                .withMinChunkSizeChars(simpleRagConfigData.getChunk().getMinChunkSize())
-                .withMinChunkLengthToEmbed(simpleRagConfigData.getChunk().getMinChunkToEmbed())
-                .withMaxNumChunks(simpleRagConfigData.getChunk().getMaxChunkSize())
-                .withKeepSeparator(simpleRagConfigData.getChunk().isKeepSeparator())
-                .build();
-    }
-
+    // If I don't mention the `Qualifier`, it will use the primary one that configure in `AiProviderConfig`
     @Bean
     public SimpleVectorStore simpleVectorStore(@Qualifier("openAiEmbeddingModel")
                                                EmbeddingModel openAiEmbeddingModel,
                                                TokenTextSplitter tokenTextSplitter,
-                                               SimpleRagConfigData simpleRagConfigData) throws IOException {
+                                               RagConfigData ragConfigData) throws IOException {
 
         var simpleVectorStore = SimpleVectorStore.builder(openAiEmbeddingModel).build();
 
         var vectorStoreFile = new File(VECTOR_STORE_PATH);
 
-        if (vectorStoreFile.exists() && !simpleRagConfigData.isForceRebuild()) {
+        if (vectorStoreFile.exists() && !ragConfigData.isForceRebuild()) {
 
             log.info("Vector store file exists, and loading it from: {}", VECTOR_STORE_PATH);
             simpleVectorStore.load(vectorStoreFile);
