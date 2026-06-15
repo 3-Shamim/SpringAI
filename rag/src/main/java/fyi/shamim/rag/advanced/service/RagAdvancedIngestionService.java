@@ -135,7 +135,7 @@ public class RagAdvancedIngestionService {
                     RagConstant.DOC_TYPE,
                     Objects.requireNonNull(resource.getFilename()).substring(0, resource.getFilename().lastIndexOf("."))
             );
-            part.getMetadata().putIfAbsent(RagConstant.UPDATED_AT, ZonedDateTime.now().toLocalDate());
+            part.getMetadata().putIfAbsent(RagConstant.UPDATED_AT, ZonedDateTime.now().toLocalDate().toString());
         }
 
     }

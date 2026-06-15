@@ -117,6 +117,7 @@ public class AiProviderConfig {
 
     @Bean
     public ChatClient openAiAdvancedRAGChatClient(OpenAiChatModel model,
+                                                  @Qualifier("retrievalAugmentationAdvisor")
                                                   RetrievalAugmentationAdvisor retrievalAugmentationAdvisor) {
 
         return ChatClient.builder(model)
