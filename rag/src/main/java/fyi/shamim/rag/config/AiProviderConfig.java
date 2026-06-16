@@ -1,5 +1,6 @@
 package fyi.shamim.rag.config;
 
+import fyi.shamim.rag.advanced.preprocessor.DomainSynonymTransformer;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
@@ -97,9 +98,11 @@ public class AiProviderConfig {
     @Bean
     public RetrievalAugmentationAdvisor retrievalAugmentationAdvisor(@Qualifier("ragAdvancedVectorStore")
                                                                      VectorStore vectorStore,
-                                                                     RagConfigData configData) {
+                                                                     RagConfigData configData,
+                                                                     DomainSynonymTransformer domainSynonymTransformer) {
 
         return RetrievalAugmentationAdvisor.builder()
+                .queryTransformers(domainSynonymTransformer)
                 .documentRetriever(
                         VectorStoreDocumentRetriever.builder()
                                 .vectorStore(vectorStore)

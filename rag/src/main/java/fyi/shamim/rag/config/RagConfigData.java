@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Md Shamim
@@ -16,8 +19,8 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @ConfigurationProperties(prefix = "app.rag")
-@Getter
 @Setter
+@Getter
 public class RagConfigData {
 
     private boolean forceRebuild;
@@ -25,6 +28,7 @@ public class RagConfigData {
     private double similarityThreshold;
     private RagChunkProperties chunk;
     private PdfProperties pdf;
+    private Map<String, String> synonyms;
 
     @Setter
     @Getter
