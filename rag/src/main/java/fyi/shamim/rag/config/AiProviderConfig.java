@@ -1,5 +1,6 @@
 package fyi.shamim.rag.config;
 
+import fyi.shamim.rag.advanced.postprocessor.NeighborStitchPostProcessor;
 import fyi.shamim.rag.advanced.preprocessor.DomainSynonymTransformer;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -99,7 +100,8 @@ public class AiProviderConfig {
     public RetrievalAugmentationAdvisor retrievalAugmentationAdvisor(@Qualifier("ragAdvancedVectorStore")
                                                                      VectorStore vectorStore,
                                                                      RagConfigData configData,
-                                                                     DomainSynonymTransformer domainSynonymTransformer) {
+                                                                     DomainSynonymTransformer domainSynonymTransformer,
+                                                                     NeighborStitchPostProcessor neighborStitchPostProcessor) {
 
         return RetrievalAugmentationAdvisor.builder()
                 .queryTransformers(domainSynonymTransformer)
@@ -110,6 +112,7 @@ public class AiProviderConfig {
                                 .similarityThreshold(configData.getSimilarityThreshold())
                                 .build()
                 )
+                .documentPostProcessors(neighborStitchPostProcessor)
                 .queryAugmenter(
                         ContextualQueryAugmenter.builder()
                                 .allowEmptyContext(false)
