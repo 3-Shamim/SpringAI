@@ -6,11 +6,14 @@ import fyi.shamim.rag.advanced.preprocessor.DomainSynonymTransformer;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.rag.generation.augmentation.ContextualQueryAugmenter;
+import org.springframework.ai.rag.preretrieval.query.expansion.MultiQueryExpander;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -18,9 +21,11 @@ import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.pgvector.PgVectorStore;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -32,6 +37,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class AiProviderConfig {
+
+    @Value("classpath:/templates/query-expander-prompt.st")
+    private Resource queryExpenderPrompt;
 
     @Bean
     public ChatClient openAIChatClient(OpenAiChatModel model) {
@@ -98,15 +106,40 @@ public class AiProviderConfig {
     }
 
     @Bean
+    public ChatClient.Builder queryExpanderChatClientBuilder(OpenAiChatModel model) {
+
+        return ChatClient.builder(model)
+                .defaultOptions(
+                        OpenAiChatOptions.builder()
+                                .temperature(0.0) // deterministic rewrite
+                                .maxTokens(265) // short paraphrases
+                                .build()
+                );
+    }
+
+    @Bean
     public RetrievalAugmentationAdvisor retrievalAugmentationAdvisor(@Qualifier("ragAdvancedVectorStore")
                                                                      VectorStore vectorStore,
                                                                      RagConfigData configData,
                                                                      DomainSynonymTransformer domainSynonymTransformer,
                                                                      NeighborStitchPostProcessor neighborStitchPostProcessor,
-                                                                     CitationHeaderPostProcessor citationHeaderPostProcessor) {
+                                                                     CitationHeaderPostProcessor citationHeaderPostProcessor,
+                                                                     @Qualifier("queryExpanderChatClientBuilder")
+                                                                     ChatClient.Builder queryExpanderChatClientBuilder) {
 
         return RetrievalAugmentationAdvisor.builder()
                 .queryTransformers(domainSynonymTransformer)
+                .queryExpander(
+                        MultiQueryExpander.builder()
+                                .chatClientBuilder(queryExpanderChatClientBuilder)
+                                .numberOfQueries(configData.getQueryExpander().getNumberOfQuery())
+                                .promptTemplate(
+                                        PromptTemplate.builder()
+                                                .resource(queryExpenderPrompt)
+                                                .build()
+                                )
+                                .build()
+                )
                 .documentRetriever(
                         VectorStoreDocumentRetriever.builder()
                                 .vectorStore(vectorStore)

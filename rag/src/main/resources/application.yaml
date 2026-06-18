@@ -31,7 +31,7 @@ spring:
 app:
   rag:
     force-rebuild: false
-    top-k: 4
+    top-k: 20 # 4
     similarity-threshold: 0.0
     radius: 1
     chunk:
@@ -47,6 +47,8 @@ app:
       left-alignment: true
       number-of-top-text-line-to-delete: 0
       number-of-bottom-text-line-to-delete: 0
+    query-expander:
+      number-of-query: 4
     synonyms:
       PTO: "paid time off"
       SSO: "single sign-on"

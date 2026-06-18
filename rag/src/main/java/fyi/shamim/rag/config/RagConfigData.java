@@ -18,8 +18,8 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @ConfigurationProperties(prefix = "app.rag")
-@Setter
 @Getter
+@Setter
 public class RagConfigData {
 
     private boolean forceRebuild;
@@ -28,10 +28,11 @@ public class RagConfigData {
     private int radius;
     private RagChunkProperties chunk;
     private PdfProperties pdf;
+    private QueryExpanderProperties queryExpander;
     private Map<String, String> synonyms;
 
-    @Setter
     @Getter
+    @Setter
     public static class RagChunkProperties {
 
         private int size;
@@ -42,8 +43,8 @@ public class RagConfigData {
 
     }
 
-    @Setter
     @Getter
+    @Setter
     public static class PdfProperties {
 
         private String mode;
@@ -52,6 +53,14 @@ public class RagConfigData {
         private boolean leftAlignment;
         private int numberOfTopTextLineToDelete;
         private int numberOfBottomTextLineToDelete;
+
+    }
+
+    @Getter
+    @Setter
+    public static class QueryExpanderProperties {
+
+        private int numberOfQuery;
 
     }
 
