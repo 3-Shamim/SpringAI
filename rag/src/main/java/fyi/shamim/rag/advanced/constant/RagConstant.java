@@ -20,4 +20,8 @@ public class RagConstant {
     public static final String UNKNOWN = "unknown";
     public static final String CHUNK_INDEX = "chunk_index";
 
+    public static final String PAGE_SNAKE = "page_number";
+    public static final String PAGE_CAMEL = "pageNumber";
+    public static final String PAGE = "page";
+
 }
