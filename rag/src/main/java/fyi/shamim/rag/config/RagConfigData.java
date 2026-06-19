@@ -29,6 +29,7 @@ public class RagConfigData {
     private RagChunkProperties chunk;
     private PdfProperties pdf;
     private QueryExpanderProperties queryExpander;
+    private RerankProperties rerank;
     private Map<String, String> synonyms;
 
     @Getter
@@ -61,6 +62,17 @@ public class RagConfigData {
     public static class QueryExpanderProperties {
 
         private int numberOfQuery;
+
+    }
+
+    @Getter
+    @Setter
+    public static class RerankProperties {
+
+        private String url;
+        private String apiKey;
+        private String model;
+        private int topN;
 
     }
 

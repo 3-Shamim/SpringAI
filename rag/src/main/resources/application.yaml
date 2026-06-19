@@ -49,6 +49,11 @@ app:
       number-of-bottom-text-line-to-delete: 0
     query-expander:
       number-of-query: 4
+    rerank:
+      url: https://api.cohere.com/v2/rerank
+      api-key: dummy_key
+      model: rerank-english-v3.0
+      top-n: 6
     synonyms:
       PTO: "paid time off"
       SSO: "single sign-on"

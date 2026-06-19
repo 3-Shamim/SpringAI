@@ -2,6 +2,7 @@ package fyi.shamim.rag.config;
 
 import fyi.shamim.rag.advanced.postprocessor.CitationHeaderPostProcessor;
 import fyi.shamim.rag.advanced.postprocessor.NeighborStitchPostProcessor;
+import fyi.shamim.rag.advanced.postprocessor.RerankPostProcessor;
 import fyi.shamim.rag.advanced.preprocessor.DomainSynonymTransformer;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -124,6 +125,7 @@ public class AiProviderConfig {
                                                                      DomainSynonymTransformer domainSynonymTransformer,
                                                                      NeighborStitchPostProcessor neighborStitchPostProcessor,
                                                                      CitationHeaderPostProcessor citationHeaderPostProcessor,
+                                                                     RerankPostProcessor rerankPostProcessor,
                                                                      @Qualifier("queryExpanderChatClientBuilder")
                                                                      ChatClient.Builder queryExpanderChatClientBuilder) {
 
@@ -147,7 +149,7 @@ public class AiProviderConfig {
                                 .similarityThreshold(configData.getSimilarityThreshold())
                                 .build()
                 )
-                .documentPostProcessors(neighborStitchPostProcessor, citationHeaderPostProcessor)
+                .documentPostProcessors(rerankPostProcessor, neighborStitchPostProcessor, citationHeaderPostProcessor)
                 .queryAugmenter(
                         ContextualQueryAugmenter.builder()
                                 .allowEmptyContext(false)
