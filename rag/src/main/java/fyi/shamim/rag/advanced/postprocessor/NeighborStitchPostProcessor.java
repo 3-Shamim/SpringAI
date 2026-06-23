@@ -36,7 +36,7 @@ public class NeighborStitchPostProcessor implements DocumentPostProcessor {
     private final RagConfigData ragConfigData;
 
     public NeighborStitchPostProcessor(@Qualifier("ragAdvancedVectorStore")
-                                        VectorStore vectorStore,
+                                       VectorStore vectorStore,
                                        RagConfigData ragConfigData) {
 
         this.vectorStore = vectorStore;

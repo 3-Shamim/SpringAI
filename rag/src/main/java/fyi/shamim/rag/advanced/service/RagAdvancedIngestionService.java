@@ -13,12 +13,19 @@ import org.springframework.ai.reader.pdf.config.PdfDocumentReaderConfig;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Path;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -82,6 +89,44 @@ public class RagAdvancedIngestionService {
 
     }
 
+    public void upsertOneByPath(Path path) {
+
+        log.info("Processing new path for ingestion: {}", path);
+
+        FileSystemResource resource = new FileSystemResource(path.toFile());
+        String source = resource.getFilename();
+        String checksum = sha265Hex(resource);
+
+        Long count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM %s WHERE metadata->>'source' = ? AND metadata->>'checksum' = ?".formatted(
+                        pgVectorStoreConfigData.getTableNameForRag()
+                ),
+                Long.class,
+                source,
+                checksum
+        );
+
+        if (count != null && count > 0) {
+            log.warn("Skipping new entry the checksum is already present in DB.");
+            return;
+        }
+
+        deleteBySource(source);
+        ingestDocumentChunksToVectorStore(new Resource[]{resource});
+
+    }
+
+    public void deleteBySource(String source) {
+
+        jdbcTemplate.update(
+                "DELETE FROM %s WHERE metadata->>'source' = ?".formatted(pgVectorStoreConfigData.getTableNameForRag()),
+                source
+        );
+
+        log.info("Deleted source: {} from vector store", source);
+
+    }
+
     private void ingestDocumentChunksToVectorStore(Resource[] pdfResources) {
 
         var documents = getDocuments(pdfResources);
@@ -104,7 +149,6 @@ public class RagAdvancedIngestionService {
             String source = String.valueOf(chunk.getMetadata().getOrDefault(RagConstant.SOURCE, RagConstant.UNKNOWN));
             int index = counters.merge(source, 1, Integer::sum) - 1;
             chunk.getMetadata().put(RagConstant.CHUNK_INDEX, index);
-
 
         }
 
@@ -136,6 +180,8 @@ public class RagAdvancedIngestionService {
                     Objects.requireNonNull(resource.getFilename()).substring(0, resource.getFilename().lastIndexOf("."))
             );
             part.getMetadata().putIfAbsent(RagConstant.UPDATED_AT, ZonedDateTime.now().toLocalDate().toString());
+            String checksum = sha265Hex(resource);
+            part.getMetadata().putIfAbsent(RagConstant.CHECKSUM, checksum);
         }
 
     }
@@ -204,5 +250,30 @@ public class RagAdvancedIngestionService {
         return false;
     }
 
+    private String sha265Hex(Resource resource) {
+
+        try {
+            final MessageDigest messageDigest = newMessageDigest("SHA-265");
+
+            try (InputStream inputStream = resource.getInputStream();
+                 DigestInputStream digestInputStream = new DigestInputStream(inputStream, messageDigest)) {
+
+                digestInputStream.transferTo(OutputStream.nullOutputStream());
+            }
+
+            return HexFormat.of().formatHex(messageDigest.digest());
+        } catch (IOException e) {
+            throw new RagException("Error creating sha265Hex for resource " + resource.getFilename(), e);
+        }
+
+    }
+
+    private MessageDigest newMessageDigest(String algorithm) {
+        try {
+            return MessageDigest.getInstance(algorithm);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RagException("Missing JCA provider for : " + algorithm, e);
+        }
+    }
 
 }
