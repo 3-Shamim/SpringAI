@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: ai-agents
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4o-mini
+          model-version: gpt-4.1-mini
+    vertex:
+      ai:
+        gemini:
+          project-id: project-df3d6550-0216-4399-9c6
+          location: us-central1
+          chat:
+            options:
+              model: gemini-2.5-flash
+    vectorstore:
+      pgvector:
+        table-name: ai_agent_vector_store
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+        max-document-batch-size: 10_000
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: postgres
+
+app:
+  agent:
+    upload-dir: data/ai-agents/upload
+    diagram-tool:
+      temperature: 0.2
+    posture-tool:
+      url: http://localhost:8082
+      env: prod
+    web-tool:
+      top-k: 5
+      google-vertex-search:
+        endpoint-base-url: https://discoveryengine.googleapis.com
+        serving-config: projects/${GCP_PROJECT}/locations/global/collections/default_collection/dataStores/${DATASTORE_ID}/servingConfigs/default_serving_config
+      owasp:
+        cheat-sheet-protocol: "https://"
+        cheat-sheet-url: "cheatsheetseries.owasp.org/"
+        asvsUrl: "https://owasp.org/www-project-application-security-verification-standard/"
+    rag-tool:
+      similarity-threshold: 0.0
+      min-topK: 1
+      max-topK: 8
+      default-topK: 5
+
+logging:
+  level:
+    root: info
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug

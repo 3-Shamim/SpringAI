@@ -8,17 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for rag" enabled="true">
+      <profile name="Annotation profile for ai-agents" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
         <module name="speech-text-speech" />
         <module name="chat-clients" />
         <module name="chat-options" />
         <module name="jailbreak-with-tool" />
+        <module name="posture-service" />
         <module name="structured-response" />
         <module name="huggingface" />
         <module name="chat-memory-with-springai-v1" />
@@ -26,6 +28,7 @@
         <module name="local-ollama-integration" />
         <module name="chat-memory" />
         <module name="springai-with-docker-model-runner" />
+        <module name="ai-agents" />
         <module name="vertex-ai" />
         <module name="advisor" />
         <module name="prompt-templating" />
@@ -35,6 +38,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ai-agents-1" target="21" />
       <module name="image-to-text-to-image" target="25" />
       <module name="text-to-image" target="25" />
     </bytecodeTargetLevel>
@@ -42,6 +46,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="advisor" options="-parameters" />
+      <module name="ai-agents" options="-parameters" />
+      <module name="ai-agents-1" options="-parameters" />
       <module name="chat-clients" options="-parameters" />
       <module name="chat-memory" options="-parameters" />
       <module name="chat-memory-pg-vector" options="-parameters" />
@@ -52,6 +58,7 @@
       <module name="image-to-text-to-image" options="-parameters" />
       <module name="jailbreak-with-tool" options="-parameters" />
       <module name="local-ollama-integration" options="-parameters" />
+      <module name="posture-service" options="-parameters" />
       <module name="prompt-templating" options="-parameters" />
       <module name="rag" options="-parameters" />
       <module name="speech-text-speech" options="-parameters" />
