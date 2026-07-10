@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/advisor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ai-agents-1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ai-agents/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ai-tools-manipulation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-clients/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-memory-pg-vector/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chat-memory-with-springai-v1/src/main/java" charset="UTF-8" />

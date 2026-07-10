@@ -20,6 +20,22 @@ spring:
       mode: always
       schema-locations: classpath:db/schema.sql
       data-locations: classpath:db/data.sql
+  ai:
+    mcp:
+      server:
+        name: posture-service
+        version: 1.0.0
+        instructions: "This server provides posture analysis services"
+        type: sync
+        protocol: streamable
+        streamable-http:
+          mcp-endpoint: /mcp
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
+
 logging:
   level:
     root: info

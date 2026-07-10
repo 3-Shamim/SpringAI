@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ai-tools-manipulation
+  profiles:
+    active: dev
+  ai:
+    openai:
+      api-key:
+      chat:
+        model: gpt-4o-mini
+
+logging:
+  level:
+    root: info
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
