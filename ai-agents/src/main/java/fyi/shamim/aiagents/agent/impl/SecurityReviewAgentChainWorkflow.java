@@ -143,7 +143,7 @@ public class SecurityReviewAgentChainWorkflow implements SecurityReviewAgent {
                 1) called diagram_extract once;
                 2) called security_posture for each target service that are defined in step with targets; Do not call security posture more than once for the same service
                 3) called rag_query for selected topics;
-                4.) called web_search for selected topics;
+                4) called web_search for selected topics;
                 Then produce the report. If any tool is unavailable, say which one and stop.
                 
                 You must not return more than one tool calling request for each step! But keep your tool call requests in a list and return

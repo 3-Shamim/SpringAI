@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class ToolOne {
+public class ToolThree {
 
-    @Tool(name = "tool_one", description = "It's a dummy tool for step one")
-    public int toolOne() {
+    @Tool(name = "tool_three", description = "It's a dummy tool for step three")
+    public int toolThree(int value) {
 
-        log.info("Tool one is called");
+        log.info("Tool three is called with value: {}", value);
 
         return (int) (Math.random() * 10) + 1;
     }
