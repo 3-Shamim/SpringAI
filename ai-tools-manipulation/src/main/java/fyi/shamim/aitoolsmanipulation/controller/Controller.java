@@ -132,6 +132,10 @@ public class Controller {
                 .call()
                 .chatResponse();
 
+        if (chatResponse == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No chat response");
+        }
+
         while (chatResponse.hasToolCalls()) {
 
             ToolExecutionResult toolExecutionResult = toolCallingManager.executeToolCalls(prompt, chatResponse);
@@ -143,9 +147,17 @@ public class Controller {
                     .call()
                     .chatResponse();
 
+            if (chatResponse == null) {
+                break;
+            }
+
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body("Pass");
+        String content = chatClient.prompt(prompt)
+                .call()
+                .content();
+
+        return ResponseEntity.status(HttpStatus.OK).body(content);
     }
 
 }
