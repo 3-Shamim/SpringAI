@@ -27,6 +27,8 @@
         <option value="$PROJECT_DIR$/ai-agents/pom.xml" />
         <option value="$PROJECT_DIR$/posture-service/pom.xml" />
         <option value="$PROJECT_DIR$/ai-tools-manipulation/pom.xml" />
+        <option value="$PROJECT_DIR$/mcp-server/pom.xml" />
+        <option value="$PROJECT_DIR$/mcp-client/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

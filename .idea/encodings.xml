@@ -16,6 +16,8 @@
     <file url="file://$PROJECT_DIR$/image-text-image/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jailbreak-with-tool/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/local-ollama-integration/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcp-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcp-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/posture-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prompt-templating/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rag/src/main/java" charset="UTF-8" />
